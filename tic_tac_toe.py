@@ -10,6 +10,7 @@
 4. The first player to get three of their marks in a row (vertically, horizontally, or diagonally) is the winner.
 5. If all nine squares are full and neither player has three in a row, the game ends in a draw."""
 
+
 def main():
   # Functions go here
   play = True
@@ -21,7 +22,12 @@ def main():
     player_choice(player, board)
     if check_for_win(board):
       print(f'Congrats Player {player}! You won!')
+      display_board(board)
       play = play_again()
+    elif check_for_draw(board):
+      print(f'No one wins! It\'s a draw')
+      display_board(board)
+      play_again()
     player = current_player(player)
   print(f'Thanks for playing.')    
     
@@ -69,7 +75,7 @@ def check_for_win(board):
 def player_choice(player, board):
   # Check to see is the box has been choosen already.
   box = int(input(f"Your turn Player {player}. Choose a box (1-9): "))
-  while board[box - 1] == 'x' or board[box - 1] == 'o':
+  while board[box - 1] == 'X' or board[box - 1] == 'O':
     print(f'That box has already been used.')
     box = int(input(f'Please choose another box: '))
   board[box - 1] = player
@@ -81,6 +87,12 @@ def play_again():
     return True
   else:
     return False
+
+def check_for_draw(board):
+  for square in range(9):
+    if board[square] != 'X' and board[square] != 'O':
+      return False
+  return True
 
 if __name__=="__main__":
   main()
