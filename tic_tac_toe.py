@@ -24,10 +24,12 @@ def main():
       print(f'Congrats Player {player}! You won!')
       display_board(board)
       play = play_again()
+      board = create_board()
     elif check_for_draw(board):
       print(f'No one wins! It\'s a draw')
       display_board(board)
-      play_again()
+      play = play_again()
+      board = create_board()
     player = current_player(player)
   print(f'Thanks for playing.')    
     
@@ -83,14 +85,14 @@ def player_choice(player, board):
 def play_again():
   # To see if the play is to be played again.
   play = input('Whould you like to play again: (Y or N): ')
-  if play.capitalize == 'Y':
+  if play.capitalize() == 'Y':
     return True
   else:
     return False
 
 def check_for_draw(board):
-  for square in range(9):
-    if board[square] != 'X' and board[square] != 'O':
+  for box in range(9):
+    if board[box] != 'X' and board[box] != 'O':
       return False
   return True
 
