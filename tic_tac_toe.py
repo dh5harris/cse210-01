@@ -41,5 +41,20 @@ def diplay_board(board):
   print( board[6] | board[7] | board[8])
   print()
 
+def check_for_win(board):
+  return (# for horizontal wins
+          board[0] == board[1] == board[2] or 
+          board[3] == board[4] == board[5] or
+          board[6] == board[7] == board[8] or
+          # for vertical wins
+          board[0] == board[3] == board[6] or
+          board[1] == board[4] == board[7] or
+          board[2] == board[5] == board[8] or
+          # for diangle wins
+          board[0] == board[4] == board[8] or
+          board[2] == board[4] == board[6])
+
+
+
 if __name__=="__main__":
   main()
