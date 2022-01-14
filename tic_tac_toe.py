@@ -23,5 +23,23 @@ def current_player(current_player):
   else:
     return 'o'
 
+def create_board():
+  # This is a list that will go into the game board 
+  # and hold the values on "x" or "o" from the player inputs
+  board = []
+  for sqaure in range(9):
+    board.append(sqaure + 1)
+  return board
+
+def diplay_board(board):
+  # This prints out the game board
+  print()
+  print( board[0] | board[1] | board[2])
+  print('--+---+--')
+  print( board[3] | board[4] | board[5])
+  print('--+---+--')
+  print( board[6] | board[7] | board[8])
+  print()
+
 if __name__=="__main__":
   main()
