@@ -15,25 +15,25 @@ def main():
   play = True
   player = current_player('')
   board = create_board()
+  print(f'Welcome to Tic Tac Toe')
   while play:
-    print(f'Welcome to Tic Tac Toe')
     display_board(board)
     player_choice(player, board)
     if check_for_win(board):
       print(f'Congrats Player {player}! You won!')
-      play_again()
+      play = play_again()
     player = current_player(player)
-      
+  print(f'Thanks for playing.')    
     
 
 
 
 def current_player(current_player):
   #determine who is the current player
-  if current_player == '' or current_player == 'o':
-    return 'x'
+  if current_player == '' or current_player == 'O':
+    return 'X'
   else:
-    return 'o'
+    return 'O'
 
 def create_board():
   # This is a list that will go into the game board 
@@ -46,11 +46,11 @@ def create_board():
 def display_board(board):
   # This prints out the game board
   print()
-  print( board[0] | board[1] | board[2])
+  print(f'{board[0]} | {board[1]} | {board[2]}')
   print('--+---+--')
-  print( board[3] | board[4] | board[5])
+  print(f'{board[3]} | {board[4]} | {board[5]}')
   print('--+---+--')
-  print( board[6] | board[7] | board[8])
+  print(f'{board[6]} | {board[7]} | {board[8]}')
   print()
 
 def check_for_win(board):
@@ -67,15 +67,16 @@ def check_for_win(board):
           board[2] == board[4] == board[6])
 
 def player_choice(player, board):
-  box = int(input(f"Your turn Player{player}. Choose a box (1-9)"))
-  # def is_box_chosen():
+  # Check to see is the box has been choosen already.
+  box = int(input(f"Your turn Player {player}. Choose a box (1-9): "))
   while board[box - 1] == 'x' or board[box - 1] == 'o':
     print(f'That box has already been used.')
     box = int(input(f'Please choose another box: '))
   board[box - 1] = player
 
 def play_again():
-  play = input('Whould you like to play again: (Y or N:')
+  # To see if the play is to be played again.
+  play = input('Whould you like to play again: (Y or N): ')
   if play.capitalize == 'Y':
     return True
   else:
