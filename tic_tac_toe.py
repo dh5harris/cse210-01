@@ -12,7 +12,19 @@
 
 def main():
   # Functions go here
+  play = True
   player = current_player('')
+  board = create_board()
+  while play:
+    print(f'Welcome to Tic Tac Toe')
+    display_board(board)
+    player_choice(player, board)
+    if check_for_win(board):
+      print(f'Congrats Player {player}! You won!')
+      play_again()
+    player = current_player(player)
+      
+    
 
 
 
@@ -27,11 +39,11 @@ def create_board():
   # This is a list that will go into the game board 
   # and hold the values on "x" or "o" from the player inputs
   board = []
-  for sqaure in range(9):
-    board.append(sqaure + 1)
+  for box in range(9):
+    board.append(box + 1)
   return board
 
-def diplay_board(board):
+def display_board(board):
   # This prints out the game board
   print()
   print( board[0] | board[1] | board[2])
@@ -54,7 +66,20 @@ def check_for_win(board):
           board[0] == board[4] == board[8] or
           board[2] == board[4] == board[6])
 
+def player_choice(player, board):
+  box = int(input(f"Your turn Player{player}. Choose a box (1-9)"))
+  # def is_box_chosen():
+  while board[box - 1] == 'x' or board[box - 1] == 'o':
+    print(f'That box has already been used.')
+    box = int(input(f'Please choose another box: '))
+  board[box - 1] = player
 
+def play_again():
+  play = input('Whould you like to play again: (Y or N:')
+  if play.capitalize == 'Y':
+    return True
+  else:
+    return False
 
 if __name__=="__main__":
   main()
